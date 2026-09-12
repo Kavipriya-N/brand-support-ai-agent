@@ -1,0 +1,299 @@
+{
+  "intents": {
+    "ORDER_STATUS_TRACKING": {
+      "description": "Inquiries regarding package location, dispatch status, tracking links, and estimated delivery dates.",
+      "default_route": "AUTO_HANDLE",
+      "route_reason": "Solvable via automated tracking link lookups and dispatch status summaries.",
+      "keywords": [
+        "track",
+        "tracking",
+        "status",
+        "where",
+        "dispatch",
+        "dispatched",
+        "eta",
+        "shipped",
+        "arrive",
+        "when"
+      ]
+    },
+    "DELIVERY_DELAY_COMPLAINT": {
+      "description": "Complaints that an order is late, missed guaranteed delivery date, or stuck in transit.",
+      "default_route": "AUTO_HANDLE",
+      "route_reason": "Can provide carrier delay policy and self-serve re-delivery or carrier inquiry steps.",
+      "keywords": [
+        "delay",
+        "delayed",
+        "late",
+        "still not",
+        "yesterday",
+        "supposed",
+        "waiting",
+        "guaranteed",
+        "today"
+      ]
+    },
+    "RETURN_REFUND_REQUEST": {
+      "description": "Requests for returning items, tracking refund credit to bank, return labels, or pickup scheduling.",
+      "default_route": "AUTO_HANDLE",
+      "route_reason": "Standard automated return authorization, return center link, and refund SLA (3-5 business days).",
+      "keywords": [
+        "return",
+        "refund",
+        "pickup",
+        "money back",
+        "returned",
+        "credit",
+        "reimbursement",
+        "label"
+      ]
+    },
+    "DIGITAL_KINDLE_PRIME_STREAMING": {
+      "description": "Issues with Prime Video playback, Kindle device/books, Amazon Music, or digital subscriptions.",
+      "default_route": "AUTO_HANDLE",
+      "route_reason": "Can provide standard digital troubleshooting steps (app cache, license refresh, device re-registration).",
+      "keywords": [
+        "prime",
+        "video",
+        "kindle",
+        "stream",
+        "streaming",
+        "music",
+        "app",
+        "book",
+        "subscription",
+        "fire"
+      ]
+    },
+    "ACCOUNT_LOGIN_SECURITY": {
+      "description": "Account lockouts, OTP/2FA failures, unrecognized transactions, password reset, or hacked accounts.",
+      "default_route": "ESCALATE",
+      "route_reason": "Requires authenticated account verification and credential security protocol by human specialist.",
+      "keywords": [
+        "account",
+        "password",
+        "otp",
+        "login",
+        "locked",
+        "hacked",
+        "unauthorized",
+        "verify",
+        "security",
+        "sign in"
+      ]
+    },
+    "DAMAGED_DEFECTIVE_ITEM": {
+      "description": "Reports of damaged goods, broken packaging, defective items, or incorrect item received.",
+      "default_route": "AUTO_HANDLE",
+      "route_reason": "Can direct to automated replacement flow or replacement order generation without manual agent if within window.",
+      "keywords": [
+        "damage",
+        "damaged",
+        "broken",
+        "defective",
+        "wrong item",
+        "faulty",
+        "seal broken",
+        "missing",
+        "smashed"
+      ]
+    },
+    "PAYMENT_BILLING_INQUIRY": {
+      "description": "Inquiries about double charges, payment failures, gift card balance, or declined cards.",
+      "default_route": "AUTO_HANDLE",
+      "route_reason": "Can clarify billing hold policies and provide bank reconciliation timelines before escalation.",
+      "keywords": [
+        "charge",
+        "charged",
+        "payment",
+        "bank",
+        "card",
+        "decline",
+        "declined",
+        "gift card",
+        "deducted",
+        "billing"
+      ]
+    },
+    "GENERAL_POLICY_FEEDBACK": {
+      "description": "Customer feedback, complaints about customer service reps, seller behavior, or broad store policies.",
+      "default_route": "ESCALATE",
+      "route_reason": "Subjective complaint or high-friction dispute requiring personalized human de-escalation.",
+      "keywords": [
+        "service",
+        "terrible",
+        "worst",
+        "feedback",
+        "agent",
+        "seller",
+        "policy",
+        "experience",
+        "rude",
+        "complaint"
+      ]
+    }
+  },
+  "empirical_clusters": {
+    "cluster_0": {
+      "top_terms": [
+        "link",
+        "just",
+        "customer",
+        "service",
+        "help",
+        "email",
+        "don",
+        "issue"
+      ],
+      "sample_inquiries": [
+        "Way to drop the ball on customer service [USER] so pissed right now!",
+        "Thanks for the style advice, [USER] look ...I think? #Halloween2017 #flamingo [LINK]",
+        "[USER] Hi ready for some help",
+        "[USER] Is the Echo Show no longer supported?",
+        "Bought an [USER] Echo Show and it won\u2019t recognize a single [USER] account in our household. WTF, guys?"
+      ],
+      "size": 2608
+    },
+    "cluster_1": {
+      "top_terms": [
+        "delivery",
+        "prime",
+        "day",
+        "day delivery",
+        "days",
+        "user prime",
+        "link",
+        "today"
+      ],
+      "sample_inquiries": [
+        "[USER] How about you guys figure out my Xbox One X project Scorpio edition first. No expected delivery or shipping date and it\u2019s only a week away",
+        "[USER] my package was \u2018accidentally\u2019 opened.. 4 items missing worth \u00a397. You need better delivery drivers!! [LINK]",
+        "[USER] delivery I paid for today,didn\u2019t arrive.why not?i paid enough for it.where is it??I\u2019m unhappy.refund the delivery charge",
+        "Just pulled another #Amazon delivery out of the bushes since the #amzl people can\u2019t walk the extra 2 ft to my door. So tired of this.",
+        "[USER] I made a same day ship mid Monday and it said it would deliver that day. It didn\u2019t. Today it still says out for delivery, still no show."
+      ],
+      "size": 522
+    },
+    "cluster_2": {
+      "top_terms": [
+        "amazon",
+        "user amazon",
+        "link",
+        "amazon prime",
+        "prime",
+        "pay",
+        "amazon pay",
+        "india"
+      ],
+      "sample_inquiries": [
+        "[USER] I want my amazon payments account CLOSED. dm me please.",
+        "Anna Inspired in idea lab at school to be [USER] package being shipped to Narnia! \"Amazon can go anywhere\" according to Anna. [LINK]",
+        "[USER] They sent the feckin' order to Germany! Some dozy driver is looking for an address in the wrong country! I'm so done with Amazon!",
+        "[USER] since when you stop giving 20% off videogame pre-orders (amazon prime members) im confused? why?",
+        "[USER] being charged for amazon prime &amp; when I go to cancel it, it\u2019s saying I\u2019m not a member\ud83d\ude20\ud83d\ude20\ud83d\ude20"
+      ],
+      "size": 558
+    },
+    "cluster_3": {
+      "top_terms": [
+        "time",
+        "sent",
+        "user time",
+        "order",
+        "ve",
+        "delivery",
+        "amazon",
+        "days"
+      ],
+      "sample_inquiries": [
+        ".[USER] Item has not been delivered but tracking says it was handed to me over an hour ago... 2nd time this has happened. Sort it out [LINK]",
+        "[USER] Is it possible to prevent AMZL from delivering my packages moving forward? Stuff is either lost/stolen/broken EVERY time.",
+        "[USER] please spend time &amp; money to fix your app. Constant issues with it.",
+        "[USER] that is not my apartment!!!!!!! This is the sending time!!!! Where is my package!!!!!!!!!! [LINK]",
+        "[USER] i mailed amazonuk so many time. but i havent got any progress.customer care just saying thats in the billing section.no i havent got refund"
+      ],
+      "size": 272
+    },
+    "cluster_4": {
+      "top_terms": [
+        "shipping",
+        "day shipping",
+        "day",
+        "ordered",
+        "user ordered",
+        "black",
+        "friday",
+        "black friday"
+      ],
+      "sample_inquiries": [
+        "[USER] [USER] Yeah this is crazy we\u2019re less than a week away and still no Shipping Information on something that we Pre-ordered back in August",
+        "[USER] why do I pay for 2 day shipping and it's going on 4 days.",
+        "[USER] Didn\u2019t know I needed to. Is that really a thing?! But still Prime shipping should be 2 days, correct?",
+        "[USER] The carrier doesn't sell free 2 day shipping as part of a membership. Amazon does.",
+        "I'm so anxious to see that my Xbox one X will be shipping. I'm seeing other people get their confirmations. Where's mine [USER]"
+      ],
+      "size": 110
+    },
+    "cluster_5": {
+      "top_terms": [
+        "user user",
+        "link",
+        "help",
+        "amazon",
+        "user link",
+        "product",
+        "india",
+        "service"
+      ],
+      "sample_inquiries": [
+        "[USER] [USER] [USER] [USER] Order# 3632693-6196346. You couldn't deliver EVEN AFTER A MONTH. You should be ashamed of yourself.",
+        "[USER] Truly. This is the strangest vampire book I\u2019ve ever received. \ud83d\ude1c cc [USER] [USER] #misship [LINK]",
+        "I go to watch #thebay and episode 7 &amp; 8 aren\u2019t there??? \ud83d\ude2d [USER] [USER]",
+        "[USER] [USER] Can I get a confirmation that it will ship tomorrow?",
+        "[USER] [USER] [USER] If iball declines my request, I cannot threaten [USER] into providing one."
+      ],
+      "size": 282
+    },
+    "cluster_6": {
+      "top_terms": [
+        "delivered",
+        "today",
+        "package",
+        "says",
+        "parcel",
+        "yesterday",
+        "delivered today",
+        "user package"
+      ],
+      "sample_inquiries": [
+        "[USER] 3 different people have given 3 different answers and I still don't have my order. Says delivered Saturday, was not, I was home all day",
+        "[USER] That page is useless - doesn\u2019t allow me to state it hasn\u2019t been delivered; only tells me it has! How can you sort this out?",
+        "[USER] My package just got here. All good, thank you!",
+        "[USER] Hi, I ordered an item on 18 Oct which said it would be delivered by 20 Oct and I still haven't received it. Can you help? Thanks",
+        "[USER] They said it was UPS. UPS says they never received the package to deliver \u00af\\_(\u30c4)_/\u00af"
+      ],
+      "size": 340
+    },
+    "cluster_7": {
+      "top_terms": [
+        "order",
+        "user order",
+        "order_id",
+        "order order_id",
+        "delivered",
+        "amazon",
+        "refund",
+        "link"
+      ],
+      "sample_inquiries": [
+        "[USER] [USER] why is my order at my local courier for the last 6 days and still hasn\u2019t been delivered to me?? Over 1 week late \ud83d\ude21",
+        "[USER] Already started the return. UPS gets it from my doorstep tomorrow. Order [ORDER_ID]",
+        "[USER] my order hasn\u2019t arrived (it was due 14th October). Can you help?",
+        "[USER] but I can\u2019t find the options to cancel or re-order?",
+        "Seriously [USER]? I order 6 identical washing up bowls and they are all being dispatched as separate orders? My phone is buzzing non-stop!"
+      ],
+      "size": 308
+    }
+  },
+  "total_analyzed": 5000
+}
