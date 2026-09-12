@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@AmazonHelp Support Ops Inspector | Antigravity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="ops-header">
+    <div class="brand-badge">
+      <span class="brand-logo">📦</span>
+      <div class="brand-title">
+        <h1>@AmazonHelp Support Ops Inspector</h1>
+        <span class="brand-subtitle">Production-Grade Support Agent Evaluation & Evidence Audit</span>
+      </div>
+    </div>
+    <div class="kpi-ribbon" id="kpi-ribbon">
+      <div class="kpi-chip">
+        <span class="kpi-label">Intent Macro-F1</span>
+        <span class="kpi-val" id="kpi-f1">0.713</span>
+      </div>
+      <div class="kpi-chip">
+        <span class="kpi-label">Hit-Rate@3</span>
+        <span class="kpi-val" id="kpi-hit">99.0%</span>
+      </div>
+      <div class="kpi-chip">
+        <span class="kpi-label">Routing Loss</span>
+        <span class="kpi-val" id="kpi-loss">67.0</span>
+      </div>
+      <div class="kpi-chip">
+        <span class="kpi-label">Judge Accept</span>
+        <span class="kpi-val" id="kpi-judge">95.5%</span>
+      </div>
+      <div class="kpi-chip highlight">
+        <span class="kpi-label">Missed Escalations</span>
+        <span class="kpi-val" id="kpi-missed">9</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Sandbox Bar -->
+  <section class="sandbox-strip">
+    <div class="sandbox-inner">
+      <span class="sandbox-tag">LIVE TEST</span>
+      <input type="text" id="custom-tweet-input" placeholder="Enter an incoming tweet (e.g., 'My package is marked delivered but no parcel was left on porch')..." />
+      <button id="btn-inspect-custom" class="btn-primary">Inspect Live</button>
+    </div>
+  </section>
+
+  <!-- Main Workstation Layout: Left Rail + Main Evidence Inspector -->
+  <main class="workstation">
+    <!-- Left Rail: Golden Evaluation Queue -->
+    <aside class="queue-rail">
+      <div class="rail-header">
+        <h2>Golden Eval Queue (N=200)</h2>
+        <div class="filter-controls">
+          <select id="filter-intent">
+            <option value="ALL">All Intents</option>
+            <option value="ORDER_STATUS_TRACKING">Order Status & Tracking</option>
+            <option value="DELIVERY_DELAY_COMPLAINT">Delivery Delay</option>
+            <option value="RETURN_REFUND_REQUEST">Return & Refund</option>
+            <option value="DIGITAL_KINDLE_PRIME_STREAMING">Digital & Prime Video</option>
+            <option value="ACCOUNT_LOGIN_SECURITY">Account & Security</option>
+            <option value="DAMAGED_DEFECTIVE_ITEM">Damaged Item</option>
+            <option value="PAYMENT_BILLING_INQUIRY">Payment & Billing</option>
+            <option value="GENERAL_POLICY_FEEDBACK">Feedback & Policy</option>
+          </select>
+          <select id="filter-difficulty">
+            <option value="ALL">All Difficulties</option>
+            <option value="easy">Easy (120)</option>
+            <option value="ambiguous">Ambiguous (80)</option>
+          </select>
+        </div>
+      </div>
+      <div class="queue-list" id="queue-list">
+        <!-- Injected via JavaScript -->
+        <div class="queue-loading">Loading Golden Evaluation Queue...</div>
+      </div>
+    </aside>
+
+    <!-- Right Workspace: Full Evidence & Decision Inspector -->
+    <section class="evidence-panel">
+      <!-- Inbound Customer Context Card -->
+      <div class="card customer-card">
+        <div class="card-header">
+          <div class="header-meta">
+            <span class="pill pill-id" id="disp-id">eval_001</span>
+            <span class="pill pill-diff" id="disp-difficulty">ambiguous</span>
+            <span class="gold-badge">GOLD INTENT: <strong id="disp-gold-intent">ORDER_STATUS_TRACKING</strong></span>
+            <span class="gold-badge">GOLD ROUTE: <strong id="disp-gold-route">AUTO_HANDLE</strong></span>
+          </div>
+          <span class="status-indicator live">LIVE AUDIT</span>
+        </div>
+        <div class="card-body">
+          <p class="customer-quote" id="disp-customer-text">Select a message from the queue or type a tweet above to inspect the agent pipeline end-to-end.</p>
+          <div class="gold-reference-box">
+            <span class="subhead">Reference Resolution Standard:</span>
+            <p id="disp-gold-ref">Awaiting inspection selection...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Grid: Stage 1 to 5 -->
+      <div class="inspector-grid">
+        <!-- Stage 1: Intent Classification & Probabilities -->
+        <div class="card stage-card">
+          <div class="card-header">
+            <h3>1. Intent Classifier</h3>
+            <span class="score-badge" id="disp-intent-conf">0.00 Conf</span>
+          </div>
+          <div class="card-body">
+            <div class="intent-headline" id="disp-intent-pred">ORDER_STATUS_TRACKING</div>
+            <div class="intent-dist" id="disp-intent-bars">
+              <!-- Bars injected dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2: Routing Decision & Reason -->
+        <div class="card stage-card">
+          <div class="card-header">
+            <h3>2. Routing Engine</h3>
+            <span class="rule-badge" id="disp-route-rule">RULE_CHECK</span>
+          </div>
+          <div class="card-body">
+            <div class="route-banner" id="disp-route-banner">
+              <span class="route-decision-text" id="disp-route-decision">AUTO_HANDLE</span>
+            </div>
+            <div class="reason-box">
+              <span class="subhead">Inspectable Reason:</span>
+              <p id="disp-route-reason">Loading reasoning engine...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 3: Grounded Evidence Retrieval -->
+      <div class="card evidence-card">
+        <div class="card-header">
+          <h3>3. Grounded Retrieval Index (Top-3 Historical Resolutions)</h3>
+          <span class="hit-badge" id="disp-retrieval-support">Support: 0.00</span>
+        </div>
+        <div class="card-body">
+          <div class="evidence-list" id="disp-evidence-list">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 4 & 5: Drafted Reply & Judge Card -->
+      <div class="inspector-grid">
+        <!-- Stage 4: Drafted Reply -->
+        <div class="card stage-card draft-card">
+          <div class="card-header">
+            <h3>4. Grounded Reply Drafter</h3>
+            <span class="pill pill-mode" id="disp-draft-mode">grounded-retrieval</span>
+          </div>
+          <div class="card-body">
+            <div class="reply-bubble" id="disp-draft-text">
+              Generating drafted reply...
+            </div>
+            <div class="reply-meta">
+              <span>Persona: <strong>@AmazonHelp</strong></span>
+              <span>Grounding: <strong id="disp-grounding-ids">#2, #5</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 5: LLM-as-a-Judge Audit -->
+        <div class="card stage-card judge-card">
+          <div class="card-header">
+            <h3>5. LLM-as-a-Judge Audit</h3>
+            <span class="verdict-pill" id="disp-judge-verdict">ACCEPT</span>
+          </div>
+          <div class="card-body">
+            <div class="rubric-matrix">
+              <div class="rubric-item">
+                <span class="rubric-name">Grounding</span>
+                <span class="rubric-score" id="disp-score-grounding">5/5</span>
+              </div>
+              <div class="rubric-item">
+                <span class="rubric-name">Correctness</span>
+                <span class="rubric-score" id="disp-score-correctness">5/5</span>
+              </div>
+              <div class="rubric-item">
+                <span class="rubric-name">Tone Match</span>
+                <span class="rubric-score" id="disp-score-tone">5/5</span>
+              </div>
+              <div class="rubric-item">
+                <span class="rubric-name">Actionability</span>
+                <span class="rubric-score" id="disp-score-action">5/5</span>
+              </div>
+            </div>
+            <div class="audit-note">
+              <span class="subhead">Auditor Rationale:</span>
+              <p id="disp-judge-note">Evaluation notes...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
