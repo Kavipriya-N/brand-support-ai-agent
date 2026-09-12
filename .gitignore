@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Linting
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment variables & secrets
+.env
+.env.*
+*.key
+*.token
+
+# Large data files and caches (reproducible via make ingest / make train)
+data/raw/
+data/processed/*.parquet
+data/processed/*.pkl
+data/processed/*.csv
+*.csv
+
+# Keep golden set and evaluation reports
+!data/golden_set.jsonl
+!data/sampling_and_labeling_note.md
+!data/processed/induced_taxonomy.json
+!data/processed/eval_results.json
+!data/processed/eval_summary_table.md
+!data/processed/human_agreement_results.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

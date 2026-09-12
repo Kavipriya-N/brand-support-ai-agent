@@ -1,0 +1,77 @@
+# Brand Support-Agent Configuration
+# All critical parameters are centralized here to eliminate magic numbers.
+
+brand:
+  name: "AmazonHelp"
+  display_name: "@AmazonHelp"
+  primary_language: "en"
+
+data:
+  raw_dataset_url: "https://huggingface.co/datasets/SunidhiSriram/twcs/resolve/main/twcs.csv"
+  raw_sample_path: "data/raw/twcs_sample.csv"
+  processed_pairs_path: "data/processed/amazonhelp_pairs.parquet"
+  golden_set_path: "data/golden_set.jsonl"
+  # Target rows to sample from raw CSV to reconstruct threads
+  raw_sample_bytes: 45000000  # ~45MB chunk containing ~150,000 tweets
+  max_pairs_to_process: 5000
+  golden_set_size: 200
+
+taxonomy:
+  num_clusters: 8
+  intents:
+    - id: "ORDER_STATUS_TRACKING"
+      description: "Where is my order, tracking updates, dispatch status, ETA inquiries"
+      default_route: "AUTO_HANDLE"
+    - id: "DELIVERY_DELAY_COMPLAINT"
+      description: "Package late, guaranteed date missed, stuck in transit"
+      default_route: "AUTO_HANDLE"
+    - id: "RETURN_REFUND_REQUEST"
+      description: "Returning items, refund status, pickup scheduling, return label issues"
+      default_route: "AUTO_HANDLE"
+    - id: "DIGITAL_KINDLE_PRIME_STREAMING"
+      description: "Prime Video buffering/access, Kindle ebook download, digital subscription issues"
+      default_route: "AUTO_HANDLE"
+    - id: "ACCOUNT_LOGIN_SECURITY"
+      description: "Hacked/locked account, 2FA/OTP issues, unauthorized charges, password reset"
+      default_route: "ESCALATE"
+    - id: "DAMAGED_DEFECTIVE_ITEM"
+      description: "Broken, wrong item delivered, missing parts, seal broken"
+      default_route: "AUTO_HANDLE"
+    - id: "PAYMENT_BILLING_INQUIRY"
+      description: "Double charged, payment method declined, gift card or promo code issue"
+      default_route: "AUTO_HANDLE"
+    - id: "GENERAL_POLICY_FEEDBACK"
+      description: "Customer feedback, broad store policy, seller complaints, unresolvable issues"
+      default_route: "ESCALATE"
+
+retrieval:
+  top_k: 3
+  similarity_metric: "cosine"
+  min_relevance_threshold: 0.18
+  vector_dimension: 5000  # TF-IDF max features or embedding dimension
+
+router:
+  auto_handle_threshold: 0.55
+  # Cost ratio: penalty of false auto-handle vs false escalation
+  false_auto_handle_cost_weight: 3.0
+  escalation_keywords:
+    - "hacked"
+    - "unauthorized"
+    - "lawsuit"
+    - "fraud"
+    - "police"
+    - "lawyer"
+    - "scam"
+    - "urgent"
+    - "emergency"
+    - "stolen card"
+
+drafter:
+  max_output_tokens: 280
+  temperature: 0.2
+  system_persona: "Professional, empathetic, and direct Amazon Customer Support Agent."
+
+evaluator:
+  judge_model: "gemini-1.5-flash"  # or openai / local rubric evaluator
+  human_audit_sample_size: 40
+  metrics_output_path: "data/processed/eval_results.json"
