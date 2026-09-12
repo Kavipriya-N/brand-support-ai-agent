@@ -1,0 +1,146 @@
+{
+  "sample_size": 40,
+  "percent_agreement": 0.6,
+  "cohens_kappa": -0.0339,
+  "categories": [
+    "ACCEPT",
+    "REVISE",
+    "REJECT"
+  ],
+  "confusion_matrix": {
+    "labels": [
+      "ACCEPT",
+      "REVISE",
+      "REJECT"
+    ],
+    "matrix_rows_human_cols_llm": [
+      [
+        24,
+        1,
+        0
+      ],
+      [
+        6,
+        0,
+        0
+      ],
+      [
+        9,
+        0,
+        0
+      ]
+    ]
+  },
+  "sample_records": [
+    {
+      "id": "eval_001",
+      "intent": "ORDER_STATUS_TRACKING",
+      "difficulty": "easy",
+      "customer_text": ".[USER] Item has not been delivered but tracking says it was handed to me over an hour ago... 2nd time this has happened. Sort it out [LINK]",
+      "candidate_reply": "[USER] We definitely want to get this sorted! Let's look into this in real time with you here: [LINK] . ^JZ",
+      "human": {
+        "verdict": "ACCEPT",
+        "grounding": 5,
+        "correctness": 5,
+        "tone": 5,
+        "actionability": 5
+      },
+      "llm_judge": {
+        "grounding_score": 5,
+        "correctness_score": 5,
+        "tone_score": 5,
+        "actionability_score": 5,
+        "overall_verdict": "ACCEPT",
+        "audit_rationale": "Response is well grounded in brand resolution history with clear customer action items and polite tone."
+      }
+    },
+    {
+      "id": "eval_002",
+      "intent": "ORDER_STATUS_TRACKING",
+      "difficulty": "easy",
+      "customer_text": "Anna Inspired in idea lab at school to be [USER] package being shipped to Narnia! \"Amazon can go anywhere\" according to Anna. [LINK]",
+      "candidate_reply": "[USER] What was advised when you spoke with us directly? ^NV",
+      "human": {
+        "verdict": "REVISE",
+        "grounding": 4,
+        "correctness": 4,
+        "tone": 4,
+        "actionability": 3
+      },
+      "llm_judge": {
+        "grounding_score": 5,
+        "correctness_score": 4,
+        "tone_score": 5,
+        "actionability_score": 3,
+        "overall_verdict": "ACCEPT",
+        "audit_rationale": "Response is well grounded in brand resolution history with clear customer action items and polite tone."
+      }
+    },
+    {
+      "id": "eval_003",
+      "intent": "ORDER_STATUS_TRACKING",
+      "difficulty": "easy",
+      "customer_text": "Seriously [USER]? I order 6 identical washing up bowls and they are all being dispatched as separate orders? My phone is buzzing non-stop!",
+      "candidate_reply": "[USER] We'd appreciate your feedback! You can leave packaging feedback here: [LINK] ^BA",
+      "human": {
+        "verdict": "ACCEPT",
+        "grounding": 5,
+        "correctness": 5,
+        "tone": 5,
+        "actionability": 5
+      },
+      "llm_judge": {
+        "grounding_score": 5,
+        "correctness_score": 4,
+        "tone_score": 5,
+        "actionability_score": 5,
+        "overall_verdict": "ACCEPT",
+        "audit_rationale": "Response is well grounded in brand resolution history with clear customer action items and polite tone."
+      }
+    },
+    {
+      "id": "eval_004",
+      "intent": "ORDER_STATUS_TRACKING",
+      "difficulty": "easy",
+      "customer_text": "[USER] that is not my apartment!!!!!!! This is the sending time!!!! Where is my package!!!!!!!!!! [LINK]",
+      "candidate_reply": "[USER] I'm sorry to know about that. Kindly connect with us here: [LINK] we'd like to help. ^SG",
+      "human": {
+        "verdict": "ACCEPT",
+        "grounding": 5,
+        "correctness": 5,
+        "tone": 5,
+        "actionability": 5
+      },
+      "llm_judge": {
+        "grounding_score": 5,
+        "correctness_score": 4,
+        "tone_score": 5,
+        "actionability_score": 5,
+        "overall_verdict": "ACCEPT",
+        "audit_rationale": "Response is well grounded in brand resolution history with clear customer action items and polite tone."
+      }
+    },
+    {
+      "id": "eval_005",
+      "intent": "ORDER_STATUS_TRACKING",
+      "difficulty": "easy",
+      "customer_text": "[USER] Yeah I sent you a DM too. Had an email saying when it had been dispatched but nothing since.",
+      "candidate_reply": "[USER] Does the book appear in your library: [LINK] If so, select the book and click deliver to send to Kindle. ^MB",
+      "human": {
+        "verdict": "ACCEPT",
+        "grounding": 5,
+        "correctness": 5,
+        "tone": 5,
+        "actionability": 5
+      },
+      "llm_judge": {
+        "grounding_score": 5,
+        "correctness_score": 4,
+        "tone_score": 5,
+        "actionability_score": 5,
+        "overall_verdict": "ACCEPT",
+        "audit_rationale": "Response is well grounded in brand resolution history with clear customer action items and polite tone."
+      }
+    }
+  ]
+}
