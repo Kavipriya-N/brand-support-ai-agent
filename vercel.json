@@ -1,0 +1,6 @@
+{
+  "buildCommand": "python scripts/build_pages.py",
+  "outputDirectory": "dist",
+  "framework": null,
+  "cleanUrls": true
+}
